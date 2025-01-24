@@ -12,6 +12,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+type Person = {
+  status: string;
+};
+
 const AttendanceChart = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,14 +32,14 @@ const AttendanceChart = () => {
         throw new Error("Failed to fetch data");
       }
 
-      const guruResult = await guruResponse.json();
-      const pesertaResult = await pesertaResponse.json();
+      const guruResult: Person[] = await guruResponse.json();
+      const pesertaResult: Person[] = await pesertaResponse.json();
 
       // Hitung jumlah `active` dan `inactive`
-      const guruActive = guruResult.filter((item) => item.status === "Aktif").length;
-      const guruInactive = guruResult.filter((item) => item.status === "Tidak Aktif").length;
-      const pesertaActive = pesertaResult.filter((item) => item.status === "Aktif").length;
-      const pesertaInactive = pesertaResult.filter((item) => item.status === "Tidak Aktif").length;
+      const guruActive = guruResult.filter((item: Person) => item.status === "Aktif").length;
+      const guruInactive = guruResult.filter((item: Person) => item.status === "Tidak Aktif").length;
+      const pesertaActive = pesertaResult.filter((item: Person) => item.status === "Aktif").length;
+      const pesertaInactive = pesertaResult.filter((item: Person) => item.status === "Tidak Aktif").length;
 
       // Gabungkan data
       setData([
