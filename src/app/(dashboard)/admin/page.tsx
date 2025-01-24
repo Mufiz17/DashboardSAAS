@@ -9,11 +9,11 @@ const AdminPage = () => {
       <div className="w-full  flex flex-col gap-8">
         {/* USER CARDS */}
         <div className="flex gap-4 justify-between flex-wrap">
-          {/* Passing jabatan as prop */}
-          <UserCard jabatan="10" />
-          <UserCard jabatan="11" />
-          <UserCard jabatan="12" />
-          <UserCard jabatan="guru" />
+          {/* Passing jabatan and darkMode as props */}
+          <UserCard jabatan="10" darkMode={true} />
+          <UserCard jabatan="11" darkMode={false} />
+          <UserCard jabatan="12" darkMode={true} />
+          <UserCard jabatan="guru" darkMode={false} />
         </div>
         {/* MIDDLE CHARTS */}
         <div className="flex gap-4 flex-col lg:flex-row">
