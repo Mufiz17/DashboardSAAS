@@ -12,12 +12,20 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// Tipe untuk objek data
+type DataItem = {
+  category: string;
+  Guru: number;
+  Peserta: number;
+};
+
 type Person = {
   status: string;
 };
 
 const AttendanceChart = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DataItem[]>([]); // Tambahkan tipe eksplisit
+
   const [loading, setLoading] = useState(true);
 
   // Fetch data dari API guru dan peserta
@@ -42,10 +50,12 @@ const AttendanceChart = () => {
       const pesertaInactive = pesertaResult.filter((item: Person) => item.status === "Tidak Aktif").length;
 
       // Gabungkan data
-      setData([
+      const chartData: DataItem[] = [
         { category: "Aktif", Guru: guruActive, Peserta: pesertaActive },
         { category: "Tidak Aktif", Guru: guruInactive, Peserta: pesertaInactive },
-      ]);
+      ];
+
+      setData(chartData); // Update state dengan data bertipe DataItem[]
     } catch (error) {
       console.error("Error fetching data:", error);
     }
